@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use  App\Http\Controllers\Api\AuthenticationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Authentication
+Route::post('user/create', [AuthenticationController::class , 'register'])->middleware('guest:sanctum');
+Route::post('user/login', [AuthenticationController::class , 'login'])->middleware('guest:sanctum');
+Route::delete('user/logout' , [AuthenticationController::class , 'logout'])->middleware('auth:sanctum');
+
+
