@@ -12,7 +12,7 @@ class PublicDonationController extends Controller
 {
     public function index()
     {
-        $offers = DonationOffer::where('status' , 'active')->paginate();
+        $offers = DonationOffer::where('status' , 'active')->orderByDesc('updated_at')->paginate(15);
         return  Response::json($offers);
     }
 

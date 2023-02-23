@@ -40,7 +40,7 @@ class DonationOffersController extends Controller
     {
        
         $id_number = $request->post('id_number');
-        $offerCheck = new DonationOfferCheck();
+        $offerCheck = new DonationOfferCheck(); // class to check the id_number
         $exist_offer  =  $offerCheck->offerCheck($id_number);
         if($exist_offer){
             return $exist_offer;

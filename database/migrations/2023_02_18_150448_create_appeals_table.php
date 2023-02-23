@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('appeals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')
+            ->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('name');
-            $table->text('descriptions');
+            $table->text('description');
             $table->string('phone_number');
             $table->enum('blood_type' , ['A+', 'A-',  'B+', 'B-', 'O+', 'O-',  'AB+', 'AB-']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

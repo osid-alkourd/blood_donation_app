@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\Api\AuthenticationController;
 use App\Http\Controllers\Api\Donations\DonationOffersController;
 use App\Http\Controllers\Api\Donations\PublicDonationController;
-
+use App\Http\Controllers\Api\Appeals\AppealsController;
+use App\Http\Controllers\Api\Appeals\PublicAppealController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,7 +29,7 @@ Route::delete('user/logout' , [AuthenticationController::class , 'logout'])->mid
 
 // Make Offer Donation
 Route::apiResource('donations' , DonationOffersController::class);
-Route::get('donations/test/{id}', [DonationOffersController::class , 'test'])->middleware('auth:sanctum');
+//Route::get('donations/test/{id}', [DonationOffersController::class , 'test'])->middleware('auth:sanctum');
 
 
 // view Offer Donation 
@@ -36,5 +37,11 @@ Route::get('public-donation/', [PublicDonationController::class , 'index'])->nam
 Route::get('donation/location' ,  [PublicDonationController::class , 'SearchByLocation'])->name('donation.location');
 Route::get('donation/type' , [PublicDonationController::class , 'SearchByBloodType'])->name('donation.blood-type');
 
+// Make Appeals 
+Route::apiResource('appeals' , AppealsController::class);
 
+// View Appeals 
+Route::get('public-appeals/', [PublicAppealController::class , 'index'])->name('public-appeals.index');
+Route::get('public-appeals/blood-type/' , [PublicAppealController::class , 'SearchByBloodType'])->name('public-appeals.blood-type');
+Route::get('public-appeals/location/' , [PublicAppealController::class , 'SearchByLocation'])->name('public-appeals.blood-type');
 
