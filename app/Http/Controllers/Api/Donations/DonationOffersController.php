@@ -12,6 +12,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DonationOfferUpdateRequest;
 use App\Functions\DonationOfferCheck;
+use App\Http\Resources\DonationOfferResource;
+
 class DonationOffersController extends Controller
 {
 
@@ -29,7 +31,7 @@ class DonationOffersController extends Controller
     {
        $user_id = Auth::guard('sanctum')->user()->id;
        $offers = DonationOffer::where('status' , 'active')->where('user_id' , $user_id)->paginate();
-        return  Response::json($offers);
+       return Response::json($offers);
     }
 
     
@@ -61,7 +63,7 @@ class DonationOffersController extends Controller
         $user_id = Auth::guard('sanctum')->user()->id;
         $offer = DonationOffer::where('id' , $id)->where('user_id' , $user_id)->first();
         if($offer){
-            return $offer;
+            return Response::json($offer);
         }
         return [
             'message' => 'The Offer Is Not Exist' , 
