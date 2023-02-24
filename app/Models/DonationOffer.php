@@ -15,9 +15,9 @@ class DonationOffer extends Model
         'user_id', 'status', 'blood_type', 'phone_number', 'location', 
         'weight', 'age', 'id_number',  'name'];
 
-        protected $hidden = [
-            'created_at',
-            'updated_at',
-            'deleted_at'
-        ];
+    protected $hidden = [
+      'created_at',
+      'updated_at',
+      'deleted_at'
+    ];
 }

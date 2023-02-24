@@ -14,6 +14,12 @@ class Appeal extends Model
         'user_id' , 'name' , 'description' , 'phone_number' , 'blood_type' 
      ];
 
+     protected $hidden = [
+          'created_at',
+          'updated_at',
+          'deleted_at'
+        ];
+
      public static function storeRules(){
           return [
             'name' => ['required' , 'string' , 'max:30' , 'min:4'] , 

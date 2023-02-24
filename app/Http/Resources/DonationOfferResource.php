@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Resources;
-
-use App\Functions\DonationResponseCondition;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DonationOfferResource extends JsonResource
