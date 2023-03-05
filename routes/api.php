@@ -43,5 +43,5 @@ Route::apiResource('appeals' , AppealsController::class);
 // View Appeals 
 Route::get('public-appeals/', [PublicAppealController::class , 'index'])->name('public-appeals.index');
 Route::get('public-appeals/blood-type/' , [PublicAppealController::class , 'SearchByBloodType'])->name('public-appeals.blood-type');
-Route::get('public-appeals/location/' , [PublicAppealController::class , 'SearchByLocation'])->name('public-appeals.blood-type');
+Route::get('public-appeals/location/' , [PublicAppealController::class , 'SearchByLocation'])->name('public-appeals.location');
 
