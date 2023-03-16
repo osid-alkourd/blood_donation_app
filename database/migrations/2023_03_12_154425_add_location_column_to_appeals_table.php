@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('campaigns', function (Blueprint $table) {
-            $table->id();
-            $table->text('description');
-            $table->timestamps();
+        Schema::table('appeals', function (Blueprint $table) {
+            $table->string('location')->after('blood_type');
+
         });
     }
 
@@ -27,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('campaigns');
+        Schema::table('appeals', function (Blueprint $table) {
+            $table->dropColumn('location');
+
+        });
     }
 };

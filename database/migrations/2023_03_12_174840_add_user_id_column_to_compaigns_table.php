@@ -13,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('campaigns', function (Blueprint $table) {
-            $table->id();
-            $table->text('description');
-            $table->timestamps();
+        Schema::table('campaigns', function (Blueprint $table) {
+            $table->foreignId('user_id')->after('description')->nullable()->constrained('users')->nullOnDelete();
         });
     }
 
@@ -27,6 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('campaigns');
+        Schema::table('campaigns', function (Blueprint $table) {
+            $table->dropForeign('user_id');
+
+        });
     }
 };

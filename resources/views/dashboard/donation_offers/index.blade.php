@@ -1,6 +1,6 @@
 @extends('dashboard.layout.dashboard')
 
-@section('title' ,  'عروض التبرع')
+@section('title', 'عروض التبرع')
 @section('css')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
@@ -8,7 +8,16 @@
 
 @section('content')
     <!-- Main content -->
-
+    @if (session('donation_confirmed'))
+        <div class="alert alert-success">
+            {{ session('donation_confirmed') }}
+        </div>
+    @endif
+    @if (session('donation_deleted'))
+        <div class="alert alert-danger">
+            {{ session('donation_deleted') }}
+        </div>
+    @endif
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -31,22 +40,38 @@
                                     <th class="th-sm"> الموقع</th>
                                     <th class="th-sm">تاريخ المناشدة</th>
                                     <th class="th-sm"> تاكيد التبرع</th>
-                                    <th class="th-sm">  حذف</th>
+                                    <th class="th-sm"> حذف</th>
                                 </tr>
                             </thead>
                             <tbody>
-                               
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                               
+                                @foreach ($offers as $offer)
+                                    <tr>
+                                        <td>{{ $offer->name }}</td>
+                                        <td>{{ $offer->blood_type }}</td>
+                                        <td>{{ $offer->phone_number }}</td>
+                                        <td>{{ $offer->id_number }}</td>
+                                        <td>{{ $offer->location }}</td>
+                                        <td>{{ $offer->created_at }}</td>
+                                        <td>
+                                            <form method="POST"
+                                                action="{{ route('dashboard.donation_offers.confirm', $offer->id) }}">
+                                                @csrf
+                                                @method('PUT')
+                                                <button class="btn btn-outline-primary" type="submit">تاكيد </button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form method="POST"
+                                                action="{{ route('dashboard.donation_offers.force-delete' ,$offer->id)}}">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-outline-danger">حذف</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -57,7 +82,7 @@
                                     <th> الموقع</th>
                                     <th>تاريخ المناشدة</th>
                                     <th> تاكيد التبرع</th>
-                                    <th>  حذف</th>
+                                    <th> حذف</th>
                                 </tr>
                             </tfoot>
                         </table>

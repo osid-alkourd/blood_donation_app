@@ -13,8 +13,10 @@ class PublicAppealController extends Controller
 
     public function index()
     {
-        $appeals = Appeal::orderByDesc('updated_at')->paginate(15 , ['name' , 
+        $appeals = Appeal::orderByDesc('updated_at')->paginate(15 , ['id' , 'name' , 
         'description' , 'phone_number' , 'blood_type']);
+        return Response::json($appeals);
+
     }
 
     public function SearchByBloodType(Request $request)
@@ -31,7 +33,7 @@ class PublicAppealController extends Controller
         ]);
         
        $blood_type = $request->input('blood_type');
-       $appeals = Appeal::where('blood_type' , $blood_type)->paginate(15 , ['name' , 
+       $appeals = Appeal::where('blood_type' , $blood_type)->paginate(15 , [ 'id' , 'name' , 
        'description' , 'phone_number' , 'blood_type']);
        return  Response::json($appeals);
 
@@ -44,7 +46,7 @@ class PublicAppealController extends Controller
         ]);
 
         $location = $request->query('location');
-        $appeals = Appeal::where('location' , $location)->orderByDesc('updated_at')->paginate(15 , ['name' , 
+        $appeals = Appeal::where('location' , $location)->orderByDesc('updated_at')->paginate(15 , [ 'id' ,'name' , 
         'description' , 'phone_number' , 'blood_type']);
         return  Response::json($appeals);
 

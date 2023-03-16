@@ -13,7 +13,7 @@ class DonationOffer extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'user_id', 'status', 'blood_type', 'phone_number', 'location', 
-        'weight', 'age', 'id_number',  'name'];
+        'weight', 'age', 'id_number',  'name' , 'deleted_at'];
 
     protected $hidden = [
       'created_at',

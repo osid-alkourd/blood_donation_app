@@ -21,8 +21,8 @@ class AppealsController extends Controller
     public function index()
     {
         $user_id = Auth::guard('sanctum')->user()->id;
-        $appeals = Appeal::where('user_id' , $user_id)->paginate(15  , ['name' , 
-        'description' , 'phone_number' , 'blood_type']);
+        $appeals = Appeal::where('user_id' , $user_id)->paginate(15  , ['id' , 'name' , 
+        'description' , 'phone_number' , 'blood_type' , 'location']);
         return Response::json($appeals);
 
     }

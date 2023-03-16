@@ -1,6 +1,6 @@
 @extends('dashboard.layout.dashboard')
 
-@section('title' ,  'مناشدات التبرع')
+@section('title', 'مناشدات التبرع')
 @section('css')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
@@ -8,7 +8,11 @@
 
 @section('content')
     <!-- Main content -->
-
+    @if (session('appeal_deleted'))
+    <div class="alert alert-danger">
+        {{ session('appeal_deleted') }}
+    </div>
+@endif
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -35,17 +39,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                               
+                                @foreach ($appeals as $appeal)
+                                    <tr>
+                                        <td>{{ $appeal->name }}</td>
+                                        <td>{{ $appeal->description }}</td>
+                                        <td>{{ $appeal->phone_number }}</td>
+                                        <td>{{ $appeal->blood_type }}</td>
+                                        <td>{{ $appeal->updated_at }}</td>
+                                        <td>{{ $appeal->location }}</td>
+                                        <td>
+                                            <form method="POST"
+                                                action="{{ route('dashboard.appeals.force-delete', $appeal->id) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-outline-danger">حذف</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
                             </tbody>
                             <tfoot>
                                 <tr>
