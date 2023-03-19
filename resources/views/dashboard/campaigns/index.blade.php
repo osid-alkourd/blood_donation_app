@@ -1,15 +1,26 @@
 @extends('dashboard.layout.dashboard')
-@section('title' ,  ' حملات التبرع')
+@section('title', ' حملات التبرع')
 
 
 
 @section('content')
     <!-- Main content -->
 
-
-    @section('content')
-    <!-- Main content -->
-
+    @if (session('campaign_created'))
+        <div class="alert alert-success">
+            {{ session('campaign_created') }}
+        </div>
+    @endif
+    @if (session('campaign_updated'))
+        <div class="alert alert-success">
+            {{ session('campaign_updated') }}
+        </div>
+    @endif
+    @if (session('campaign_deleted'))
+        <div class="alert alert-danger">
+            {{ session('campaign_deleted') }}
+        </div>
+    @endif
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -27,22 +38,37 @@
                                 <tr>
                                     <th class="th-sm">وصف الحملة </th>
                                     <th class="th-sm">تاريخ النشر</th>
-                                    <th class="th-sm">  ناشر الحملة</th>
-                                    <th class="th-sm">  حذف</th>
+                                    <th class="th-sm"> ناشر الحملة</th>
+                                    <td class="th-sm">تعديل</td>
+                                    <th class="th-sm"> حذف</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                               
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                               
+                                @foreach ($campaigns as $campaign)
+                                    <tr>
+                                        <td>{{ $campaign->description }} </td>
+                                        <td>{{ $campaign->updated_at }} </td>
+                                        <td>{{ $campaign->description }} </td>
+                                        <td>
+                                            <a href="{{ route('dashboard.campaigns.edit', [$campaign->id]) }}"
+                                                class="btn btn-sm btn-outline-success">تعديل</a>
+                                            <!-- /.btn btn-sm btn-outline-success -->
+                                        </td>
+                                        <td>
+                                            <form method="POST"
+                                                action="{{ route('dashboard.campaigns.destroy', $campaign->id) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">حذف</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
                             </tbody>
-                            
+
                         </table>
                     </div>
                     <!-- /.card-body -->
@@ -59,5 +85,5 @@
 @endsection('content')
 
 
-    
-    <!-- /.row (main row) -->
+
+<!-- /.row (main row) -->

@@ -9,10 +9,10 @@
 @section('content')
     <!-- Main content -->
     @if (session('appeal_deleted'))
-    <div class="alert alert-danger">
-        {{ session('appeal_deleted') }}
-    </div>
-@endif
+        <div class="alert alert-danger">
+            {{ session('appeal_deleted') }}
+        </div>
+    @endif
     <!-- Main content -->
     <section class="content">
         <div class="row">

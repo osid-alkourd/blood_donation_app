@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Campaign;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\Return_;
 
 class CampaignsController extends Controller
 {
@@ -14,7 +18,8 @@ class CampaignsController extends Controller
      */
     public function index()
     {
-        return view('dashboard.campaigns.index');
+        $campaigns = DB::table('campaigns')->get();
+        return view('dashboard.campaigns.index' , compact('campaigns'));
     }
 
     /**
@@ -36,9 +41,14 @@ class CampaignsController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'description' => ['required' , 'min:10'] , 
-        // ]);
+        $request->validate([
+            'description' => ['required' , 'string' ,'min:10'] , 
+        ]);
+        $data = $request->all();
+        $data['user'] = Auth::user()->id;
+        Campaign::create($data);
+        return redirect()->route('dashboard.campaigns')
+                ->with('campaign_created' , 'تم نشر حملة التبرع');
     }
 
     /**
@@ -60,7 +70,8 @@ class CampaignsController extends Controller
      */
     public function edit($id)
     {
-        return view('dashboard.campaigns.edit');
+        $campaign = Campaign::findOrFail($id);
+        return view('dashboard.campaigns.edit' , compact('campaign'));
 
     }
 
@@ -73,7 +84,15 @@ class CampaignsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'description' => ['required' , 'string' ,'min:10'] , 
+        ]);
+        $campaign = Campaign::findOrFail($id);
+        $campaign->update([
+            'description' => $request->description
+        ]);
+        return redirect()->route('dashboard.campaigns')
+               ->with('campaign_updated' , 'تم تحديث وصف الحملة');
     }
 
     /**
@@ -84,6 +103,8 @@ class CampaignsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $campaign = Campaign::findOrFail($id);
+        $campaign->delete();
+        return back()->with('campaign_deleted' , 'تم حذف حملة التبرع');
     }
 }

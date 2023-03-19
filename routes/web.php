@@ -18,16 +18,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//return view('welcome');
+   return redirect()->route('login');
 });
-
-
-
 
 
 Route::group([
   'as' => 'dashboard.' ,
   'prefix' => 'dashboard/' ,
+  'middleware' => ['auth' , 'admin']
 ] ,function(){
 
   //donation offers
@@ -48,6 +47,7 @@ Route::group([
    Route::get('campaigns/create' , [CampaignsController::class , 'create'])->name('campaigns.create');
    Route::get('campaigns/edit/{id}' , [CampaignsController::class , 'edit'])->name('campaigns.edit');
    Route::put('campaigns/update/{id}' , [CampaignsController::class , 'update'])->name('campaigns.update');
+   Route::delete('campaigns/{id}' , [CampaignsController::class , 'destroy'])->name('campaigns.destroy');
 
 
  // statistics
@@ -59,3 +59,15 @@ Route::group([
 // Route::get('/table' , function(){
 //   return view('dashboard.table');
 // });
+
+require __DIR__.'/auth.php';
+
+
+
+
+
+
+
+
+
+
