@@ -45,7 +45,7 @@ class CampaignsController extends Controller
             'description' => ['required' , 'string' ,'min:10'] , 
         ]);
         $data = $request->all();
-        $data['user'] = Auth::user()->id;
+        $data['user_id'] = Auth::user()->id;
         Campaign::create($data);
         return redirect()->route('dashboard.campaigns')
                 ->with('campaign_created' , 'تم نشر حملة التبرع');

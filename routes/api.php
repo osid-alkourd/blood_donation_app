@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\Donations\DonationOffersController;
 use App\Http\Controllers\Api\Donations\PublicDonationController;
 use App\Http\Controllers\Api\Appeals\AppealsController;
 use App\Http\Controllers\Api\Appeals\PublicAppealController;
+use App\Http\Controllers\Api\DonationCampaigns\DonationCampaignsController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -46,3 +48,6 @@ Route::get('public-appeals/', [PublicAppealController::class , 'index'])->name('
 Route::get('public-appeals/blood-type/' , [PublicAppealController::class , 'SearchByBloodType'])->name('public-appeals.blood-type');
 Route::get('public-appeals/location/' , [PublicAppealController::class , 'SearchByLocation'])->name('public-appeals.location');
 
+// view cdonation campaigns 
+
+Route::get('donation-campaigns/' , [DonationCampaignsController::class , 'index']);
