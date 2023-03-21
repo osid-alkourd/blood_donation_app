@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\dashboard\AppealsController;
+use App\Http\Controllers\dashboard\ArticalController;
 use App\Http\Controllers\dashboard\CampaignsController;
 use App\Http\Controllers\dashboard\DonationOffersController;
 use App\Http\Controllers\dashboard\statisticsController;
@@ -22,7 +23,7 @@ Route::get('/', function () {
    return redirect()->route('login');
 });
 
-
+//dashboard
 Route::group([
   'as' => 'dashboard.' ,
   'prefix' => 'dashboard/' ,
@@ -49,12 +50,18 @@ Route::group([
    Route::put('campaigns/update/{id}' , [CampaignsController::class , 'update'])->name('campaigns.update');
    Route::delete('campaigns/{id}' , [CampaignsController::class , 'destroy'])->name('campaigns.destroy');
 
+   
+   // articals
+   Route::resource('articals', ArticalController::class)->except(['show']);
 
  // statistics
  Route::get('statistics/' , [statisticsController::class , 'index'])->name('statistics');
 
 
 });
+
+//end of dashboard
+
 
 // Route::get('/table' , function(){
 //   return view('dashboard.table');

@@ -37,6 +37,7 @@ Route::get('public-donation/', [PublicDonationController::class , 'index'])->nam
 Route::get('donation/location' ,  [PublicDonationController::class , 'SearchByLocation'])->name('donation.location');
 Route::get('donation/type' , [PublicDonationController::class , 'SearchByBloodType'])->name('donation.blood-type');
 
+
 // Make Appeals 
 Route::apiResource('appeals' , AppealsController::class);
 

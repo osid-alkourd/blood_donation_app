@@ -228,6 +228,18 @@
                                 <p>انشاء حملة تبرع</p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.articals.create') }}" class="nav-link">
+                                <p>  اضافة مقالة</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.articals.index') }}" class="nav-link">
+                                <p>  جميع المقالات </p>
+                            </a>
+                        </li>
                       
                         <li class="nav-item">
                             <a href="{{ route('dashboard.statistics') }}" class="nav-link">
