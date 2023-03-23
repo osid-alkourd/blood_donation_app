@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Donations\DonationOffersController;
 use App\Http\Controllers\Api\Donations\PublicDonationController;
 use App\Http\Controllers\Api\Appeals\AppealsController;
 use App\Http\Controllers\Api\Appeals\PublicAppealController;
+use App\Http\Controllers\Api\Articles\ArticleController;
 use App\Http\Controllers\Api\DonationCampaigns\DonationCampaignsController;
 
 /*
@@ -49,5 +50,7 @@ Route::get('public-appeals/blood-type/' , [PublicAppealController::class , 'Sear
 Route::get('public-appeals/location/' , [PublicAppealController::class , 'SearchByLocation'])->name('public-appeals.location');
 
 // view cdonation campaigns 
-
 Route::get('donation-campaigns/' , [DonationCampaignsController::class , 'index']);
+
+// view articels 
+Route::get('articles/' , [ArticleController::class , 'index']);
