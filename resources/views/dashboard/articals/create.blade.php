@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for=""> اضافة صورة</label>
-                                    <input type="file" name="image"  class="form-control">
+                                    <input type="file" name="image" class="form-control">
                                     @error('image')
                                         <div style="color:red;">{{ $message }}</div>
                                     @enderror
@@ -53,16 +53,6 @@
                                 </div>
 
                             </div> <br>
-
-                            <!--
-                                                            <div class="row">
-                                                                <div class="col-6">
-                                                                  <label for=""> مكان الحملة</label>
-                                                                  <input type="text" class="form-control" placeholder="مكان الحملة">
-                                                                </div>
-                                                                
-                                                            </div> <br>
-                                                            -->
                             <button type="submit" class="form-group btn btn-primary">انشرها</button>
                             <!-- /.form-group btn btn-primary -->
                         </form>

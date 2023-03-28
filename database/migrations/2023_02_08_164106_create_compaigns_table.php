@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
-            $table->text('description');
+            $table->string('image_url');
             $table->timestamps();
         });
     }

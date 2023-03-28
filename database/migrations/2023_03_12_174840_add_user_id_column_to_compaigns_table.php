@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->foreignId('user_id')->after('description')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('user_id')->after('image_url')->nullable()->constrained('users')->nullOnDelete();
         });
     }
 

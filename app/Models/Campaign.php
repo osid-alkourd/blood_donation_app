@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Campaign extends Model
 {
     use HasFactory;
-    protected $fillable = ['description' , 'user_id'];
+    protected $fillable = ['image_url' , 'user_id'];
 }

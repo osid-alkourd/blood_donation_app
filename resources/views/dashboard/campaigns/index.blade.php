@@ -39,7 +39,7 @@
                                     <th class="th-sm">وصف الحملة </th>
                                     <th class="th-sm">تاريخ النشر</th>
                                     <th class="th-sm"> ناشر الحملة</th>
-                                    <td class="th-sm">تعديل</td>
+                                    <th class="th-sm">تعديل</th>
                                     <th class="th-sm"> حذف</th>
 
                                 </tr>
@@ -47,9 +47,9 @@
                             <tbody>
                                 @foreach ($campaigns as $campaign)
                                     <tr>
-                                        <td>{{ $campaign->description }} </td>
+                                        <td><img src="{{ asset('storage/' . $campaign->image_url) }}" alt="" height="50"></td>
                                         <td>{{ $campaign->updated_at }} </td>
-                                        <td>{{ $campaign->description }} </td>
+                                        <td><img src="{{ asset('storage/' . $campaign->image_url) }}" alt="" height="50"></td>
                                         <td>
                                             <a href="{{ route('dashboard.campaigns.edit', [$campaign->id]) }}"
                                                 class="btn btn-sm btn-outline-success">تعديل</a>

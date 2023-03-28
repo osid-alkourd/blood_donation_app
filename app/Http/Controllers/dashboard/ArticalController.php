@@ -47,7 +47,7 @@ class ArticalController extends Controller
         $file = $request->file('image');
         if($file){
             $path = $file->store('articals' , 'public'); 
-            $data['image'] = $path;
+            $data['image_url'] = $path;
         }
              
         Artical::create($data);

@@ -18,26 +18,18 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form action="{{ route('dashboard.campaigns.store') }}" method="post">
+                        <form action="{{ route('dashboard.campaigns.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <div class="form-group">
-                                <label for="">وصف الحملة</label>
-                                <textarea name="description" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
-                                @error('description')
-                                    <div style="color:red;">{{ $message }}</div>
-                                @enderror
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">اضافة صورة</label>
+                                    <input type="file" class="form-control" name="image">
+                                    @error('image')
+                                        <div style="color:red;">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
-                            <!--
-                                        <div class="row">
-                                            <div class="col-6">
-                                              <label for=""> مكان الحملة</label>
-                                              <input type="text" class="form-control" placeholder="مكان الحملة">
-                                            </div>
-                                            
-                                        </div> <br>
-                                        -->
-                            <button type="submit" class="form-group btn btn-primary">انشرها</button>
-                            <!-- /.form-group btn btn-primary -->
+                            <button type="submit" class="btn btn-primary"> انشرها</button>
                         </form>
                         <!-- /.row -->
                     </div>

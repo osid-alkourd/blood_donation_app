@@ -16,7 +16,7 @@ class DonationCampaignsController extends Controller
      */
     public function index()
     {
-        $donation_campaigns = DB::table('campaigns')->paginate(15 , ['id' , 'updated_at' , 'description']);
+        $donation_campaigns = DB::table('campaigns')->paginate(15 , ['id' , 'updated_at' , 'image_url']);
         return  Response::json($donation_campaigns);
     }
 

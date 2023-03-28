@@ -7,7 +7,7 @@ use App\Models\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Node\Stmt\Return_;
+use Illuminate\Support\Facades\Storage;
 
 class CampaignsController extends Controller
 {
@@ -42,10 +42,15 @@ class CampaignsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'description' => ['required' , 'string' ,'min:10'] , 
+            'image' => ['required' , 'mimes:jpg,png'] , 
         ]);
-        $data = $request->all();
+        $data = $request->except('image');
         $data['user_id'] = Auth::user()->id;
+        $file = $request->file('image');
+        if($file){
+            $path = $file->store('campaigns' , 'public'); 
+            $data['image_url'] = $path;
+        }
         Campaign::create($data);
         return redirect()->route('dashboard.campaigns')
                 ->with('campaign_created' , 'تم نشر حملة التبرع');
@@ -85,12 +90,21 @@ class CampaignsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'description' => ['required' , 'string' ,'min:10'] , 
+            'image' => ['required' , 'image'] , 
         ]);
         $campaign = Campaign::findOrFail($id);
-        $campaign->update([
-            'description' => $request->description
-        ]);
+        $old_image_path = $campaign->image_url;
+        $data = $request->except('image');
+        $data['user_id'] = Auth::user()->id;
+        $file = $request->file('image');
+        if($file) {
+            $path = $file->store('campaigns' , 'public'); 
+            $data['image_url'] = $path;
+        }
+        $campaign->update($data);
+        if($old_image_path && $file){
+            Storage::disk('public')->delete($old_image_path);
+        } 
         return redirect()->route('dashboard.campaigns')
                ->with('campaign_updated' , 'تم تحديث وصف الحملة');
     }
@@ -105,6 +119,9 @@ class CampaignsController extends Controller
     {
         $campaign = Campaign::findOrFail($id);
         $campaign->delete();
+        if($campaign->image_url){
+            Storage::disk('public')->delete( $campaign->image_url);
+        }
         return back()->with('campaign_deleted' , 'تم حذف حملة التبرع');
     }
 }
