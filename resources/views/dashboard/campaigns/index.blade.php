@@ -29,7 +29,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">DataTable with default features</h3>
+                        <h3 class="card-title">حملات التبرع الموجودة في النظام</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -49,7 +49,7 @@
                                     <tr>
                                         <td><img src="{{ asset('storage/' . $campaign->image_url) }}" alt="" height="50"></td>
                                         <td>{{ $campaign->updated_at }} </td>
-                                        <td><img src="{{ asset('storage/' . $campaign->image_url) }}" alt="" height="50"></td>
+                                        <td>{{ $campaign->admin_name }}</td>
                                         <td>
                                             <a href="{{ route('dashboard.campaigns.edit', [$campaign->id]) }}"
                                                 class="btn btn-sm btn-outline-success">تعديل</a>

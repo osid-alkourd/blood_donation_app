@@ -18,7 +18,11 @@ class CampaignsController extends Controller
      */
     public function index()
     {
-        $campaigns = DB::table('campaigns')->get();
+      //  $campaigns = DB::table('campaigns')->get();
+      $campaigns = DB::table('campaigns as c')
+                    ->leftJoin('users as u', 'c.user_id', '=', 'u.id')
+                    ->select('c.*', 'u.name as admin_name')
+                    ->get();
         return view('dashboard.campaigns.index' , compact('campaigns'));
     }
 
