@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Donations\PublicDonationController;
 use App\Http\Controllers\Api\Appeals\AppealsController;
 use App\Http\Controllers\Api\Appeals\PublicAppealController;
 use App\Http\Controllers\Api\Articles\ArticleController;
+use App\Http\Controllers\Api\Authentication\EmailVerifyCodeController;
 use App\Http\Controllers\Api\DonationCampaigns\DonationCampaignsController;
 
 /*
@@ -29,9 +30,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('user/create', [AuthenticationController::class , 'register'])->middleware('guest:sanctum');
 Route::post('user/login', [AuthenticationController::class , 'login'])->middleware('guest:sanctum');
 Route::delete('user/logout' , [AuthenticationController::class , 'logout'])->middleware('auth:sanctum');
+Route::get('user/verification/code' ,[EmailVerifyCodeController::class , 'checkCode'])->middleware('auth:sanctum');
+
+// Route::post('email/verification-notification', function (Request $request) {
+//     $request->user()->sendEmailVerificationNotification();
+ 
+// })->middleware(['auth' , 'throttle:6,1']);
 
 // Make Offer Donation
-Route::apiResource('donations' , DonationOffersController::class);
+Route::apiResource('donations' , DonationOffersController::class)->middleware('is.verify.email');
 //Route::get('donations/test/{id}', [DonationOffersController::class , 'test'])->middleware('auth:sanctum');
 
 
@@ -42,7 +49,7 @@ Route::get('donation/type' , [PublicDonationController::class , 'SearchByBloodTy
 
 
 // Make Appeals 
-Route::apiResource('appeals' , AppealsController::class);
+Route::apiResource('appeals' , AppealsController::class)->middleware('is.verify.email');
 
 // View Appeals 
 Route::get('public-appeals/', [PublicAppealController::class , 'index'])->name('public-appeals.index');
