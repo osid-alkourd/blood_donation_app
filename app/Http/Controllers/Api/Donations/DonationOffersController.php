@@ -63,11 +63,14 @@ class DonationOffersController extends Controller
         $user_id = Auth::guard('sanctum')->user()->id;
         $offer = DonationOffer::where('id' , $id)->where('user_id' , $user_id)->first();
         if($offer){
-            return Response::json($offer);
+            return Response::json($offer , 200);
         }
-        return [
+        // return [
+        //     'message' => 'The Offer Is Not Exist' , 
+        // ];
+        return Response::json([
             'message' => 'The Offer Is Not Exist' , 
-        ];
+        ]);
     }
 
     
@@ -94,9 +97,12 @@ class DonationOffersController extends Controller
         $user_id = Auth::guard('sanctum')->user()->id;
         $offer = DonationOffer::where('id' , $id)->where('user_id' , $user_id)->first();
         $offer->forceDelete();
-        return [
-            'message' => 'your offer are deleted' 
-        ];
+        // return [
+        //     'message' => 'your offer are deleted' 
+        // ];
+        return Response::json([
+            'message' => 'your offer are deleted'
+        ] , 200);
     }
 
     // public function test($id)

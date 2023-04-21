@@ -11,9 +11,12 @@ use Illuminate\Support\Facades\Response;
         if($exist_offer)
         {
           if($exist_offer->status == 'active'){
-               return [
+              //  return [
+              //   'message' => 'The id number has already been taken'  ,
+              //  ];
+              return Response::json([
                 'message' => 'The id number has already been taken'  ,
-               ];
+              ] , 409);
           }else{
               $last_donation_time = $exist_offer->deleted_at;
               $current_time = Carbon::now();
@@ -26,14 +29,18 @@ use Illuminate\Support\Facades\Response;
                  return Response::json($exist_offer , 201);
               }else{
 
-                 return [
-                    'message' => 'Donations are not available for less than 60 days'      
-                 ];
+                //  return [
+                //     'message' => 'Donations are not available for less than 60 days'      
+                //  ];
+                return Response::json([
+                  'message' => 'Donations are not available for less than 60 days'      
+                ] , 429 );
               }
           
             }
           // else if the offer is exist and status is inactive
         }
+        return false;
 
     }
  }

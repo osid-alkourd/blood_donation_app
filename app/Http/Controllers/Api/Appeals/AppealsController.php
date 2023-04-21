@@ -23,7 +23,7 @@ class AppealsController extends Controller
         $user_id = Auth::guard('sanctum')->user()->id;
         $appeals = Appeal::where('user_id' , $user_id)->paginate(15  , ['id' , 'name' , 
         'description' , 'phone_number' , 'blood_type' , 'location']);
-        return Response::json($appeals);
+        return Response::json($appeals , 200);
 
     }
 
@@ -46,7 +46,7 @@ class AppealsController extends Controller
     {
         $user_id = Auth::guard('sanctum')->user()->id;
         $appeal = Appeal::where('id' , $id)->where('user_id' , $user_id)->first();
-        return Response::json($appeal);
+        return Response::json($appeal , 200);
     }
 
    
@@ -59,12 +59,10 @@ class AppealsController extends Controller
         $appeal = Appeal::where('id' , $id)->where('user_id' , $user_id)->first();
         if($appeal){
             $appeal->update($request->all());
-            return Response::json($appeal , 201);
+             return Response::json($appeal , 201);
             }
 
-        return [
-            '403 errros' , 
-        ];
+        
     }
 
     
@@ -75,8 +73,11 @@ class AppealsController extends Controller
         $user_id = Auth::guard('sanctum')->user()->id;
         $appeal = Appeal::where('id' , $id)->where('user_id' , $user_id)->first();
         $appeal->forceDelete();
-        return [
+        // return [
+        //     'message' => 'your offer are deleted' 
+        // ];
+        return Response::json([
             'message' => 'your offer are deleted' 
-        ];
+        ] , 200);
     }
 }

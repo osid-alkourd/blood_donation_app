@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\Articles\ArticleController;
 use App\Http\Controllers\Api\Authentication\EmailVerifyCodeController;
 use App\Http\Controllers\Api\DonationCampaigns\DonationCampaignsController;
 use App\Http\Controllers\Api\Authentication\CustomForgetPasswordController;
+use App\Http\Controllers\Api\Setting\UserSettingController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,6 +37,10 @@ Route::post('user/sendForgetPasswordCode/' ,  [CustomForgetPasswordController::c
 Route::get('user/CheckForgetPasswordCode/' ,  [CustomForgetPasswordController::class , 'CheckForgetPasswordCode'])->middleware('guest:sanctum');
 Route::put('user/ResetForgetedPassword/' ,  [CustomForgetPasswordController::class , 'ResetForgetedPassword'])->middleware('guest:sanctum');
 
+
+// user setting 
+Route::get('user/getUserData' , [UserSettingController::class , 'getUserData'])->middleware('auth:sanctum');
+Route::post('user/resetCurrentPassword' , [UserSettingController::class , 'resetCurrentPassword'])->middleware('auth:sanctum');
 
 // Route::post('email/verification-notification', function (Request $request) {
 //     $request->user()->sendEmailVerificationNotification();
@@ -65,3 +71,4 @@ Route::get('donation-campaigns/' , [DonationCampaignsController::class , 'index'
 
 // view articels 
 Route::get('articles/' , [ArticleController::class , 'index']);
+

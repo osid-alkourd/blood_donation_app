@@ -16,8 +16,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articals = DB::table('articals')->paginate();
-        return Response::json($articals);
+        $articals = DB::table('articals')->paginate(15);
+        return Response::json($articals , 200);
 
     }
 
