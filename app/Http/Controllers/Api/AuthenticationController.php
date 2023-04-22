@@ -70,7 +70,7 @@ class AuthenticationController extends Controller
                 return response()->json(
              [
                'errors' => $validate->errors()
-             ], 401);
+             ], 422);
           }
 
           $user = User::where('email' , '=' , $request->email)->first();
@@ -91,12 +91,14 @@ class AuthenticationController extends Controller
 
 
 
-  public function logout(){
+  public function logout()
+  {
       $user = Auth::guard('sanctum')->user();
       $user->currentAccessToken()->delete();
-      return [
+     
+      return Response::json([
         'message' => 'token deleted , you are logout'
-      ];
+      ] , 200);
    }
 
    

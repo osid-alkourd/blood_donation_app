@@ -56,7 +56,7 @@ class CustomForgetPasswordController extends Controller
 
         return Response::json([
           'message' => 'invalid check forget password code'
-        ] , 422);
+        ] , 401);
 
 
     }
@@ -78,7 +78,7 @@ class CustomForgetPasswordController extends Controller
         ]);
         return Response::json([
           'message' => 'success reset your password' 
-        ], 200);
+        ], 201);
     }
     return Response::json([
       'message' => 'the user not found'

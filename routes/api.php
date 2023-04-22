@@ -33,6 +33,7 @@ Route::post('user/create', [AuthenticationController::class , 'register'])->midd
 Route::post('user/login', [AuthenticationController::class , 'login'])->middleware('guest:sanctum');
 Route::delete('user/logout' , [AuthenticationController::class , 'logout'])->middleware('auth:sanctum');
 Route::get('user/verification/code' ,[EmailVerifyCodeController::class , 'checkCode'])->middleware('auth:sanctum');
+Route::post('user/sendVerificationEmailCode' ,[EmailVerifyCodeController::class , 'sendEmailVerificationCode'])->middleware('auth:sanctum');
 Route::post('user/sendForgetPasswordCode/' ,  [CustomForgetPasswordController::class , 'sendForgetPasswordCode'])->middleware('guest:sanctum');
 Route::get('user/CheckForgetPasswordCode/' ,  [CustomForgetPasswordController::class , 'CheckForgetPasswordCode'])->middleware('guest:sanctum');
 Route::put('user/ResetForgetedPassword/' ,  [CustomForgetPasswordController::class , 'ResetForgetedPassword'])->middleware('guest:sanctum');

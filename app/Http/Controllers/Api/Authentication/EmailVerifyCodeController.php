@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Response;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 class EmailVerifyCodeController extends Controller
 {
     public function checkCode(Request $request) {
@@ -26,11 +27,32 @@ class EmailVerifyCodeController extends Controller
             $verification_instance->delete();
             return Response::json([
                 'message' => 'Success Verification'
-            ]);
+            ] , 200);
         }
 
         return Response::json([
             'message' => 'Invalid Code'
+        ] , 401);
+    }
+
+    // send email verification code
+    public function sendEmailVerificationCode(Request $request)
+    {
+        $user = Auth::guard('sanctum')->user();
+        $code = Str::random(7); 
+        $verification = EmailVerify::create([
+          'user_id' => $user->id , 
+          'code' => $code , 
         ]);
+        
+        Mail::send('email.emailVerificationEmail', ['code' => $code], function($message) use($user){
+          $message->to($user->email);
+          $message->subject('Email Verification Mail');
+          $message->from('osmokha@gmial.com' , 'Blood Bank');
+      });
+
+      return Response::json([
+        'message' => 'check your email'
+      ] , 201);
     }
 }
