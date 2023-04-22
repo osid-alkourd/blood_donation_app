@@ -33,13 +33,13 @@ Route::group([
   //donation offers
    Route::get('donation_offers/' , [DonationOffersController::class , 'index'])->name('donation_offers');
    //confirm specific donation offer
-   Route::put('donation_offers/confirm/{id}' , [DonationOffersController::class , 'confirm_donation'])->name('donation_offers.confirm');
-   Route::delete('donation_offers/{id}' , [DonationOffersController::class , 'destroy'])->name('donation_offers.force-delete');
+   Route::put('donation_offers/confirm/' , [DonationOffersController::class , 'confirm_donation'])->name('donation_offers.confirm');
+   Route::delete('donation_offers/' , [DonationOffersController::class , 'destroy'])->name('donation_offers.force-delete');
 
 
    // appeals
    Route::get('appeals/' , [AppealsController::class , 'index'])->name('appeals');
-   Route::delete('appeals/{id}' , [AppealsController::class , 'destroy'])->name('appeals.force-delete');
+   Route::delete('appeals/' , [AppealsController::class , 'destroy'])->name('appeals.force-delete');
 
 
    // campaigns
@@ -48,11 +48,12 @@ Route::group([
    Route::get('campaigns/create' , [CampaignsController::class , 'create'])->name('campaigns.create');
    Route::get('campaigns/edit/{id}' , [CampaignsController::class , 'edit'])->name('campaigns.edit');
    Route::put('campaigns/update/{id}' , [CampaignsController::class , 'update'])->name('campaigns.update');
-   Route::delete('campaigns/{id}' , [CampaignsController::class , 'destroy'])->name('campaigns.destroy');
+   Route::delete('campaigns/' , [CampaignsController::class , 'destroy'])->name('campaigns.destroy');
 
    
    // articals
-   Route::resource('articals', ArticalController::class)->except(['show']);
+   Route::resource('articals', ArticalController::class)->except(['show' , 'destroy']);
+   Route::delete('articals/' , [ArticalController::class , 'destroy'])->name('articals.destroy');
 
  // statistics
  Route::get('statistics/' , [statisticsController::class , 'index'])->name('statistics');

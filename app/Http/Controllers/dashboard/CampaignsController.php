@@ -119,9 +119,10 @@ class CampaignsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $campaign = Campaign::findOrFail($id);
+        $campaign_id = $request->campaign_id;
+        $campaign = Campaign::findOrFail($campaign_id);
         $campaign->delete();
         if($campaign->image_url){
             Storage::disk('public')->delete( $campaign->image_url);

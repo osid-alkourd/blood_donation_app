@@ -113,9 +113,10 @@ class ArticalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $artical = Artical::findOrFail($id);
+        $artical_id = $request->artical_id;
+        $artical = Artical::findOrFail($artical_id);
         $artical->delete();
         if($artical->image_url){
             Storage::disk('public')->delete($artical->image_url);

@@ -20,9 +20,10 @@ class DonationOffersController extends Controller
     }
 
    
-    public function confirm_donation($id)
+    public function confirm_donation(Request $request)
     {
-        $offer = DonationOffer::findOrFail($id);
+        $donation_offer_id = $request->donation_offer_id;
+        $offer = DonationOffer::findOrFail($donation_offer_id);
         $offer->update([
              'status' => 'inactive' , 
              'deleted_at' => Carbon::now()
@@ -31,9 +32,10 @@ class DonationOffersController extends Controller
     }
 
     
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $offer = DonationOffer::findOrFail($id);
+        $donation_offer_id = $request->donation_offer_id;
+        $offer = DonationOffer::findOrFail($donation_offer_id);
         $offer->forceDelete();
         return back()->with('donation_deleted' , 'تم حذف عرض التبرع');
 

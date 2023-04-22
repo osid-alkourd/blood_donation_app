@@ -4,6 +4,30 @@
 
 
 @section('content')
+<div class="modal fade" id="deleteArticalModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form method="POST" action="{{ route('dashboard.articals.destroy')}}">
+            @csrf
+            @method('delete')
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">  حذف المقالة  </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+             <input type="hidden" name="artical_id" id="artical_id"/> 
+             <h6> هل انت متاكد من حذف هذه المقالة</h6>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
+            <button type="submit" class="btn btn-danger">حذف</button>
+            </div>
+       </form>
+      </div>
+    </div>
+  </div>
     <!-- Main content -->
     @if (session('created_artical'))
         <div class="alert alert-success">
@@ -34,11 +58,7 @@
 
                             <a href="{{ route('dashboard.articals.edit', $artical->id) }}"
                                 class="btn btn-success">تعديل</a>
-                            <form method="POST" action="{{ route('dashboard.articals.destroy', $artical->id) }}" style="display: inline;">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger">حذف</button>
-                            </form>
+                                <button type="submit" class="btn btn-danger delete-artical" value="{{$artical->id}}" >حذف</button>
                         </div>
                     </div>
                 @endforeach
@@ -55,7 +75,19 @@
     <!-- /.content -->
 
 @endsection('content')
-
+@section('scripts')
+delete-campaign
+<script>
+    $(document).ready(function(){
+           $(document).on('click' , '.delete-artical' , function (e) {
+            e.preventDefault();
+            var artical_id = $(this).val();
+            $('#artical_id').val(artical_id);
+            $('#deleteArticalModal').modal('show');
+         });
+    });
+</script>
+@stop
 
 
 <!-- /.row (main row) -->

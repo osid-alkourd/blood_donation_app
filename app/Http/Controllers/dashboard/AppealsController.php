@@ -18,8 +18,9 @@ class AppealsController extends Controller
     }
 
     
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->appeal_id;
         $appeal = Appeal::findOrFail($id);
         $appeal->forceDelete();
         return back()->with('appeal_deleted' , 'تم حذف مناشدة التبرع');

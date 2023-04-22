@@ -7,6 +7,31 @@
 @endsection
 
 @section('content')
+
+<div class="modal fade" id="deleteAppealModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form method="POST" action="{{ route('dashboard.appeals.force-delete')}}">
+            @csrf
+            @method('delete')
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">  حذف المناشدة</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+             <input type="hidden" name="appeal_id" id="appeal_id"/> 
+             <h6>هل انت متاكد من حذف هذه المناشدة</h6>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
+            <button type="submit" class="btn btn-danger">حذف</button>
+            </div>
+       </form>
+      </div>
+    </div>
+  </div>
     <!-- Main content -->
     @if (session('appeal_deleted'))
         <div class="alert alert-danger">
@@ -47,13 +72,8 @@
                                         <td>{{ $appeal->blood_type }}</td>
                                         <td>{{ $appeal->updated_at }}</td>
                                         <td>{{ $appeal->location }}</td>
-                                        <td>
-                                            <form method="POST"
-                                                action="{{ route('dashboard.appeals.force-delete', $appeal->id) }}">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-outline-danger">حذف</button>
-                                            </form>
+                                        <td> 
+                                             <button type="submit" class="btn btn-outline-danger delete-appeal"  data-toggle="modal" value="{{ $appeal->id }}">حذف</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -104,6 +124,24 @@
                 }
             });
         });
+    </script>
+
+    <script>
+         $(document).ready(function(){
+                $(document).on('click' , '.delete-appeal' , function (e) {
+                 e.preventDefault();
+                 var appeal_id = $(this).val();
+                 $('#appeal_id').val(appeal_id);
+                 $('#deleteAppealModal').modal('show');
+              });
+         });
+
+        // $(document).ready(function(){
+        //      $('#delete-appeal').click(function(e){
+        //            e.preventDefault();
+        //            alert('hello');
+        //      });
+        // });
     </script>
 @endsection
 <!-- /.row (main row) -->

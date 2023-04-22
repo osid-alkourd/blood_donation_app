@@ -4,6 +4,30 @@
 
 
 @section('content')
+<div class="modal fade" id="deleteCampaignModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form method="POST" action="{{ route('dashboard.campaigns.destroy')}}">
+            @csrf
+            @method('delete')
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">  حذف حملة التبرع </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+             <input type="hidden" name="campaign_id" id="campaign_id"/> 
+             <h6> هل انت متاكد من حذف هذه الحملة</h6>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
+            <button type="submit" class="btn btn-danger">حذف</button>
+            </div>
+       </form>
+      </div>
+    </div>
+  </div>
     <!-- Main content -->
 
     @if (session('campaign_created'))
@@ -56,12 +80,7 @@
                                             <!-- /.btn btn-sm btn-outline-success -->
                                         </td>
                                         <td>
-                                            <form method="POST"
-                                                action="{{ route('dashboard.campaigns.destroy', $campaign->id) }}">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-sm btn-outline-danger">حذف</button>
-                                            </form>
+                                                <button type="submit" class="btn btn-sm btn-outline-danger delete-campaign" value="{{$campaign->id }}">حذف</button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -84,6 +103,19 @@
     <!-- /.content -->
 @endsection('content')
 
+@section('scripts')
+delete-campaign
+<script>
+    $(document).ready(function(){
+           $(document).on('click' , '.delete-campaign' , function (e) {
+            e.preventDefault();
+            var campaign_id = $(this).val();
+            $('#campaign_id').val(campaign_id);
+            $('#deleteCampaignModal').modal('show');
+         });
+    });
+</script>
+@stop
 
 
 <!-- /.row (main row) -->
