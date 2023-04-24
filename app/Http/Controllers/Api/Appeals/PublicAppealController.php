@@ -14,7 +14,7 @@ class PublicAppealController extends Controller
     public function index()
     {
         $appeals = Appeal::orderByDesc('updated_at')->paginate(15 , ['id' ,  'user_id'  ,  'name' , 
-        'description' , 'phone_number' , 'blood_type']);
+        'description' , 'phone_number' , 'blood_type' , 'location']);
         return Response::json($appeals , 200);
 
     }
