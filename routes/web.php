@@ -61,6 +61,9 @@ Route::group([
 
 });
 
+Route::get('code/' , function(){
+  return rand(10000, 99999);
+});
 //end of dashboard
 
 

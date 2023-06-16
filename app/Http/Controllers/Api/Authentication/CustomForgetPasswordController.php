@@ -19,7 +19,7 @@ class CustomForgetPasswordController extends Controller
             'email' => ['required' , 'email' , 'exists:users,email']
         ]);
         $email = $request->email;
-        $code = Str::random(7); 
+        $code = rand(10000, 99999); 
         CustomForgetPassword::create([
           'email' => $request->email , 
           'code' => $code
@@ -41,7 +41,7 @@ class CustomForgetPasswordController extends Controller
     {
         $request->validate([
             'email' => ['required' , 'email' , 'exists:users,email'] , 
-            'code' => ['required' , 'max:7' , 'min:7']
+            'code' => ['required' , 'max:5' , 'min:5']
         ]);
         $email = $request->email;
         $code = $request->code;

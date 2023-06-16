@@ -15,7 +15,7 @@ class EmailVerifyCodeController extends Controller
 {
     public function checkCode(Request $request) {
         $request->validate([
-            'code' => ['required' , 'max:7' , 'min:7']
+            'code' => ['required' , 'max:5' , 'min:5']
         ]);
         $user = Auth::guard('sanctum')->user();
         $code = $request->query('code');
@@ -39,7 +39,7 @@ class EmailVerifyCodeController extends Controller
     public function sendEmailVerificationCode(Request $request)
     {
         $user = Auth::guard('sanctum')->user();
-        $code = Str::random(7); 
+        $code =  rand(10000, 99999);
         $verification = EmailVerify::create([
           'user_id' => $user->id , 
           'code' => $code , 
