@@ -31,7 +31,7 @@ class AuthenticationController extends Controller
           $token = $user->createToken($request->device_name);
           
 
-        $code = Str::random(7); 
+        $code = rand(10000, 99999); 
         $verification = EmailVerify::create([
           'user_id' => $user->id , 
           'code' => $code , 
