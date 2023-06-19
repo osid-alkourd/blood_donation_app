@@ -47,13 +47,6 @@ class AuthenticationController extends Controller
           'token' => $token->plainTextToken,
           'user' => $user,
     ] , 201);
- //     }catch(Throwable $e){
- //         return response()->json([
- //             'status' => false,
- //             'message' => $e->getMessage()
- //         ], 500);
- //     }
-
     }
 
 

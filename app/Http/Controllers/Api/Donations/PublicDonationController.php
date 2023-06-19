@@ -35,9 +35,6 @@ class PublicDonationController extends Controller
     }
 
 
-
-
-
     public function SearchByBloodType(Request $request)
     {
        

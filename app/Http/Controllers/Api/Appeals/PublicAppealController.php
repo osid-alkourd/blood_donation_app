@@ -26,8 +26,7 @@ class PublicAppealController extends Controller
         $request->merge([
             'blood_type' => $request->blood_type.'+' 
          ]);
-       }
-        
+       } 
         $request->validate([
             'blood_type' => ['required' , Rule::in(['A+', 'A-',  'B+', 'B-', 'O+', 'O-',  'AB+', 'AB-'])] , 
         ]);
@@ -36,7 +35,6 @@ class PublicAppealController extends Controller
        $appeals = Appeal::where('blood_type' , $blood_type)->paginate(15 , [ 'id' , 'user_id' , 'name' , 
        'description' , 'phone_number' , 'blood_type']);
        return  Response::json($appeals);
-
     }
 
     public function SearchByLocation(Request $request)
@@ -46,7 +44,8 @@ class PublicAppealController extends Controller
         ]);
 
         $location = $request->query('location');
-        $appeals = Appeal::where('location' , $location)->orderByDesc('updated_at')->paginate(15 , [ 'id' , 'user_id' ,'name' , 
+        $appeals = Appeal::where('location' , $location)->orderByDesc('updated_at')->paginate(15 , [
+             'id' , 'user_id' ,'name' , 
         'description' , 'phone_number' , 'blood_type']);
         return  Response::json($appeals);
 

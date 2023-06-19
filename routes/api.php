@@ -41,7 +41,7 @@ Route::put('user/ResetForgetedPassword/' ,  [CustomForgetPasswordController::cla
 
 // user setting 
 Route::get('user/getUserData' , [UserSettingController::class , 'getUserData'])->middleware(['auth:sanctum' , 'is.verify.email']);
-Route::post('user/resetCurrentPassword' , [UserSettingController::class , 'resetCurrentPassword'])->middleware(['auth:sanctum' , 'is.verify.email']);
+Route::put('user/resetCurrentPassword' , [UserSettingController::class , 'resetCurrentPassword'])->middleware(['auth:sanctum' , 'is.verify.email']);
 
 // Route::post('email/verification-notification', function (Request $request) {
 //     $request->user()->sendEmailVerificationNotification();
