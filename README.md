@@ -94,10 +94,10 @@ Admins have access to the following tools:
 
 ![Postman Collection 1](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753621296/Screenshot_759_yr9vfj.png)
 
-![Postman Collection 2](https://raw.githubusercontent.com/osid-alkourd/blood_donation_app/refs/heads/master/screenshots/Screenshot%20(760).png)
+![Postman Collection 2](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753621558/Screenshot_760_ne7w3a.png)
 
 
-![Postman Collection 3](https://raw.githubusercontent.com/osid-alkourd/blood_donation_app/refs/heads/master/screenshots/Screenshot%20(761).png)
+![Postman Collection 3](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753621644/Screenshot_761_byuuwd.png)
 
 ---
 
