@@ -93,7 +93,7 @@ Admins have access to the following tools:
 
 ## 🧪 Postman Collection
 
-![PostmanCollection1](screenshots/Screenshot%20(759).png)
+![PostmanCollection1](/screenshots/database-schema.png)
 
 ![Postman Collection 2](https://raw.githubusercontent.com/osid-alkourd/blood_donation_app/refs/heads/master/screenshots/Screenshot%20(760).png)
 
