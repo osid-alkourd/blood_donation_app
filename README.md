@@ -22,7 +22,7 @@ php artisan serve
 
 ## 🗃️ Database Schema
 
-![Database Schema](https://raw.githubusercontent.com/osid-alkourd/blood_donation_app/refs/heads/master/screenshots/database-schema.png)
+![Database Schema](https://github.com/osid-alkourd/blood_donation_app/blob/master/screenshots/database-schema.png?raw=true)
 
 ---
 
