@@ -1,66 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🩸 Blood Donation API – Laravel Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+An application aimed at connecting individuals who wish to donate blood with those in need of donors in the Gaza Strip. This app facilitates quick and easy access for people in need of blood donations to reach potential donors.
 
-## About Laravel
+This repository provides the backend API for a mobile blood donation app built with **Laravel**. It includes features for both regular users (via mobile app) and administrators (via web dashboard).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📁 Clone the Project
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```bash
+https://github.com/osid-alkourd/blood_donation_app.git
+cd blood-donation-api
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+npm run dev
+php artisan serve
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🗃️ Database Schema
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+![Database Schema](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753614315/database-schema_c1r9jk.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🗃️ Database Schema
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+![Database Schema](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753614315/database-schema_c1r9jk.png)
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## 📱 Mobile App Features (API)
+Users can perform the following actions via the mobile application:
 
-## Contributing
+- ✅ **Register and create a new account**
+  Secure user authentication with email and password.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- 🔍 **Browse all donation offers**
+  View a list of available blood donation offers.
 
-## Code of Conduct
+- 🔽 **Filter donation offers by Region or Blood Type**
+  Narrow down offers or appeals using advanced filtering.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- 📢 **View all donation appeals**
+  Access all blood donation requests posted by users.
 
-## Security Vulnerabilities
+- 🔽 **Filter donation appeals by Region or Blood Type**
+  Easily find relevant donation appeals with filter options.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- 📇 **View contact information of donors or applicants**
 
-## License
+- ➕ **Create new donation offers**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- 🆘 **Submit donation appeals**
+
+- ✏️ **Edit or ❌ Delete their own:**
+    - Donation offers
+    - Donation appeals
+
+- 📅 **View donation campaigns published by the admin**
+
+- 📚 Read articles published by the admin
+
+- 🔒 Reset forgotten password
+
+- 🔐 Update account password
+
+---
+
+## 🛠️ Admin Dashboard Features
+
+Admins have access to the following tools:
+
+- ❌ **Delete any donation offer or appeal**
+
+- ✅ **Confirm a donation offer**
+
+   - After confirmation, the donor cannot post new    offers for 60 days
+
+- 📊 **View system statistics:**
+
+     - Total users, offers, appeals, and campaigns
+
+- 📣 **Add announcements about blood donation campaigns**
+
+- 📅 **Manage campaigns:**
+
+   - Add, Update, Delete, View
+
+- ✍️ **Manage articles:**
+
+    - Add, Update, Delete, View
+
+
+---
+
+## 🧪 Postman Collection
+
+![Postman Collection 1](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753621296/Screenshot_759_yr9vfj.png)
+
+![Postman Collection 2](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753621558/Screenshot_760_ne7w3a.png)
+
+
+![Postman Collection 3](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753621644/Screenshot_761_byuuwd.png)
+
+
+
+
