@@ -22,7 +22,7 @@ php artisan serve
 
 ## 🗃️ Database Schema
 
-![Database Schema](https://github.com/osid-alkourd/blood_donation_app/blob/master/screenshots/database-schema.png?raw=true)
+![DatabaseSchema!](screenshots/database-schema.png)
 
 ---
 
@@ -93,7 +93,7 @@ Admins have access to the following tools:
 
 ## 🧪 Postman Collection
 
-![Postman Collection 1](https://raw.githubusercontent.com/osid-alkourd/blood_donation_app/refs/heads/master/screenshots/Screenshot%20(759).png)
+![PostmanCollection1](screenshots/Screenshot%20(759).png)
 
 ![Postman Collection 2](https://raw.githubusercontent.com/osid-alkourd/blood_donation_app/refs/heads/master/screenshots/Screenshot%20(760).png)
 
