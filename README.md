@@ -22,8 +22,7 @@ php artisan serve
 
 ## 🗃️ Database Schema
 
-![Schema](<img width="783" height="514" alt="image" src="https://github.com/user-attachments/assets/c38b93ac-0086-4ee3-a1a2-fe474ec0e8a3" />
-)
+![Schema](https://github.com/osid-alkourd/blood_donation_app/blob/master/screenshots/schema.png?raw=true)
 
 ---
 
