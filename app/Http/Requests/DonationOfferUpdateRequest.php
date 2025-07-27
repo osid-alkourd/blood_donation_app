@@ -32,8 +32,10 @@ class DonationOfferUpdateRequest extends FormRequest
             'weight' => [ 'sometimes' ,'required' , 'numeric' , 'max:158' , 'min:60'] , 
             'age' => ['sometimes' ,'required' , 'integer' , 'max:65' , 'min:17'] , 
             'id_number' => [ 'sometimes' , 'required' , 'numeric' , 'digits:9' , 
-              // Rule::unique('donation_offers')->ignore($reqeust->id),
-              Rule::unique('donation_offers' , 'id_number')->ignore($this->route('donation')) ,
+             Rule::unique('donation_offers')->ignore($this->route('donation')),
+             // Rule::unique('donation_offers' , 'id_number')->ignore($this->route('donation')) ,
+           //Rule::unique('donation_offers' , 'id_number')->ignore($this->route('donation')) ,
+
               ] ,  
             'name' => [ 'sometimes' , 'required', 'string' , 'max:30' , 'min:4'] ,      
         ];
