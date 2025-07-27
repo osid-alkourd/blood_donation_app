@@ -99,7 +99,7 @@ Admins have access to the following tools:
 
 ## 🧪 Postman Collection
 
-![Postman Collection 1](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753621296/Screenshot_759_yr9vfj.png)
+![Postman Collection 1](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753621296/Screenshot_759_yr9vfj png)
 
 ![Postman Collection 2](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753621558/Screenshot_760_ne7w3a.png)
 
