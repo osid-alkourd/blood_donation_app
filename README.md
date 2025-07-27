@@ -22,7 +22,7 @@ php artisan serve
 
 ## 🗃️ Database Schema
 
-![DatabaseSchema!](screenshots/database-schema.png)
+![Schema](screenshots/database-schema.png?raw=true)
 
 ---
 
