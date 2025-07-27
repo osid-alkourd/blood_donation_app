@@ -17,13 +17,12 @@ php artisan key:generate
 php artisan migrate
 npm run dev
 php artisan serve
-
+```
 ---
 
 ## 🗃️ Database Schema
 
-![Schema](screenshots/database-schema.png?raw=true)
-
+![Schema](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753614315/database-schema_c1r9jk.png)
 ---
 
 ## 📱 Mobile App Features (API)
@@ -93,13 +92,13 @@ Admins have access to the following tools:
 
 ## 🧪 Postman Collection
 
-![PostmanCollection1](/screenshots/database-schema.png)
+![Postman Collection 1](https://res.cloudinary.com/dh2wbcdah/image/upload/v1753621296/Screenshot_759_yr9vfj.png)
 
 ![Postman Collection 2](https://raw.githubusercontent.com/osid-alkourd/blood_donation_app/refs/heads/master/screenshots/Screenshot%20(760).png)
 
 
 ![Postman Collection 3](https://raw.githubusercontent.com/osid-alkourd/blood_donation_app/refs/heads/master/screenshots/Screenshot%20(761).png)
 
-
+---
 
 
